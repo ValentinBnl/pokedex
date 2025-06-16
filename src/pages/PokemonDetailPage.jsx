@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchPokemonById } from "../utils/fetch";
-import { PKMN_TYPES } from "../../constants/constants";
+import { PKMN_TYPES } from "../constants/constants";
 import { Header } from "../components/Header";
 
 const PokemonDetailPage = () => {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./InputFilter.module.css";
 
 const InputFilter = ({ onSearch }) => {
 	const [search, setSearch] = useState("");
@@ -12,7 +13,8 @@ const InputFilter = ({ onSearch }) => {
 	return (
 		<input
 			type="text"
-			placeholder="Search a Pokémon"
+			className={styles.searchInput}
+			placeholder="Filter the pokemon list, ex: Pikachu..."
 			value={search}
 			onChange={handleChange}
 		/>

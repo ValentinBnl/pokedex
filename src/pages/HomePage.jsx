@@ -3,6 +3,7 @@ import { fetchPokemons } from "../utils/fetch";
 import { Header } from "../components/Header";
 import { PokemonCard } from "../components/PokemonCard";
 import { InputFilter } from "../components/InputFilter";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
 	const [pokemons, setPokemons] = useState([]);
@@ -27,9 +28,8 @@ const HomePage = () => {
 	return (
 		<>
 			<Header />
-			<h1>Pokédex</h1>
 			<InputFilter onSearch={setSearchTerm} />
-			<div>
+			<div className={styles.pokemonGrid}>
 				{filteredPokemons.length > 0 ? (
 					filteredPokemons.map((pokemon) => (
 						<PokemonCard key={pokemon.id} pokemon={pokemon} />
