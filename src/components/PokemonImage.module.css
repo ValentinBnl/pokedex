@@ -1,0 +1,9 @@
+.pokemonImageSection {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.pokemonImageSection img {
+	width: 250px;
+}

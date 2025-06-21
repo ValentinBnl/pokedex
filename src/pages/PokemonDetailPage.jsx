@@ -1,47 +1,84 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchPokemonById } from "../utils/fetch";
-import { PKMN_TYPES } from "../constants/constants";
+import {
+	fetchPokemonById,
+	fetchReviewsByPokemonId,
+	postReview,
+	patchLike,
+} from "../utils/fetch";
 import { Header } from "../components/Header";
+import PokemonImage from "../components/PokemonImage";
+import PokemonStats from "../components/PokemonStats";
+import PokemonReviews from "../components/PokemonReviews";
+import styles from "./PokemonDetailPage.module.css";
 
 const PokemonDetailPage = () => {
 	const { id } = useParams();
 	const [pokemon, setPokemon] = useState(null);
+	const [likes, setLikes] = useState(0);
+	const [reviews, setReviews] = useState([]);
+	const [newReview, setNewReview] = useState("");
 
 	useEffect(() => {
-		async function getPokemon() {
+		async function loadData() {
 			try {
 				const data = await fetchPokemonById(id);
 				setPokemon(data);
+				setLikes(data.like || 0);
+				const reviewsData = await fetchReviewsByPokemonId(id);
+				setReviews(reviewsData);
 			} catch (error) {
-				console.error("Error in PokemonDetailPage:", error);
+				console.error("Error loading Pokémon detail:", error);
 			}
 		}
-
-		getPokemon();
+		loadData();
 	}, [id]);
 
-	if (!pokemon) {
-		return <div>Loading...</div>;
-	}
+	const handleLike = async () => {
+		const updatedLikes = likes + 1;
+		setLikes(updatedLikes);
+		await patchLike(id, updatedLikes);
+	};
+
+	const handleReviewSubmit = async (e) => {
+		if (e.key === "Enter" && newReview.trim()) {
+			const reviewToPost = {
+				pokemonId: parseInt(id),
+				author: "Me",
+				content: newReview.trim().slice(0, 100),
+			};
+			try {
+				const posted = await postReview(reviewToPost);
+				setReviews((prev) => [...prev, posted]);
+				setNewReview("");
+			} catch (error) {
+				console.error("Failed to post review:", error);
+			}
+		}
+	};
+
+	if (!pokemon) return <div>Loading...</div>;
 
 	return (
-		<>
+		<main className={styles.detailBg}>
 			<Header />
-			<h1>{pokemon.name}</h1>
-			<img
-				src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-				alt={pokemon.name}
-			/>
-			<div>
-				{pokemon.types.map((type) => {
-					const typeData = PKMN_TYPES.find(
-						(t) => t.name.toLowerCase() === type.toLowerCase()
-					);
-					return <span key={type}>{type}</span>;
-				})}
+			<div className={styles.detailPage}>
+				<PokemonImage id={pokemon.id} name={pokemon.name} />
+				<PokemonStats
+					name={pokemon.name}
+					types={pokemon.types}
+					baseStats={pokemon.base}
+				/>
+				<PokemonReviews
+					likes={likes}
+					onLike={handleLike}
+					reviews={reviews}
+					newReview={newReview}
+					onReviewChange={(value) => setNewReview(value)}
+					onReviewSubmit={handleReviewSubmit}
+				/>
 			</div>
-		</>
+		</main>
 	);
 };
 

@@ -1,0 +1,52 @@
+.pokemonStatsSection {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	text-align: center;
+}
+
+.typeBadges {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+
+.typeBadge {
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 4px 10px;
+	border-radius: 10px;
+	text-transform: capitalize;
+}
+
+.stats {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.statItem label {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	display: block;
+	text-align: left;
+}
+
+.progressBar {
+	width: 100%;
+	height: 10px;
+	background-color: #ccc;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.progress {
+	height: 100%;
+	background-color: #4caf50;
+	border-radius: 5px 0 0 5px;
+}
