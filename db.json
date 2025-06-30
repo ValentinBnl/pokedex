@@ -278,7 +278,7 @@
     },
     {
       "id": "9",
-      "like": 0,
+      "like": 3,
       "name": "Tortank",
       "types": [
         "Water"
@@ -5585,6 +5585,12 @@
       "pokemonId": 25,
       "author": "Me",
       "content": "1111111111111"
+    },
+    {
+      "id": "5d11",
+      "pokemonId": 9,
+      "author": "Me",
+      "content": "blah"
     }
   ]
 }

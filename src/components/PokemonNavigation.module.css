@@ -1,0 +1,24 @@
+.navWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 40px 0 40px;
+}
+
+.arrowBtn {
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	color: #333;
+	transition: transform 0.2s ease;
+}
+
+.arrowBtn:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.arrowBtn:hover:not(:disabled) {
+	transform: scale(1.2);
+}

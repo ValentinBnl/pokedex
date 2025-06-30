@@ -47,4 +47,4 @@ const PokemonStats = ({ name, types, baseStats }) => {
 	);
 };
 
-export default PokemonStats;
+export { PokemonStats };

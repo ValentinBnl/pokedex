@@ -6,10 +6,11 @@ import {
 	postReview,
 	patchLike,
 } from "../utils/fetch";
+import { PokemonNavigation } from "../components/PokemonNavigation";
 import { Header } from "../components/Header";
-import PokemonImage from "../components/PokemonImage";
-import PokemonStats from "../components/PokemonStats";
-import PokemonReviews from "../components/PokemonReviews";
+import { PokemonImage } from "../components/PokemonImage";
+import { PokemonStats } from "../components/PokemonStats";
+import { PokemonReviews } from "../components/PokemonReviews";
 import styles from "./PokemonDetailPage.module.css";
 
 const PokemonDetailPage = () => {
@@ -62,6 +63,7 @@ const PokemonDetailPage = () => {
 	return (
 		<main className={styles.detailBg}>
 			<Header />
+			<PokemonNavigation />
 			<div className={styles.detailPage}>
 				<PokemonImage id={pokemon.id} name={pokemon.name} />
 				<PokemonStats

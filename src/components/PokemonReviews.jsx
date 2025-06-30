@@ -40,4 +40,4 @@ const PokemonReviews = ({
 	);
 };
 
-export default PokemonReviews;
+export { PokemonReviews };

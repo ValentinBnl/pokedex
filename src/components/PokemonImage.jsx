@@ -9,4 +9,4 @@ const PokemonImage = ({ id, name }) => (
 	</div>
 );
 
-export default PokemonImage;
+export { PokemonImage };
